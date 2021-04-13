@@ -139,6 +139,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9dV-Pv-v12">
                                 <rect key="frame" x="364" y="44" width="30" height="30"/>
                                 <state key="normal" title="Sort"/>
+                                <connections>
+                                    <action selector="SortBtn:" destination="7bz-ZS-U7Q" eventType="touchUpInside" id="6xH-Yz-aCp"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="v6X-M5-KOH"/>
@@ -157,6 +160,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xo4-k3-c6I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="7bz-ZS-U7Q" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1760.8695652173915" y="49.553571428571423"/>
         </scene>

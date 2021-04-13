@@ -60,7 +60,6 @@ extension PlayerVC: UITableViewDataSource, UITableViewDelegate{
         cell.PlayerLbl.text = demo.value(forKey: "name") as? String ?? ""
         
         var cap = demo.value(forKey: "captain")
-        
         if cap as? Int == 1 {
             cell.PlayerLbl.text = "\(demo.value(forKey: "name") as? String ?? "") : (Captain)"
         }
@@ -76,4 +75,7 @@ extension PlayerVC: UITableViewDataSource, UITableViewDelegate{
 class PlayerTVC: UITableViewCell{
     
     @IBOutlet weak var PlayerLbl: UILabel!
+    
+    @IBAction func SortBtn(_ sender: UIButton) {
+    }
 }

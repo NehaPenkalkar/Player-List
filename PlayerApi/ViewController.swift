@@ -3,6 +3,7 @@ import UIKit
 class ViewController: UIViewController {
     @IBOutlet weak var tblView: UITableView!
     var countryNameDict = NSDictionary()
+    var country = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +23,7 @@ class ViewController: UIViewController {
                 do{
                     let jsonResp = try JSONSerialization.jsonObject(with: dataResp, options: .mutableLeaves) as! NSDictionary
                     self.countryNameDict = jsonResp
+                    self.country = self.countryNameDict.allKeys as! [String]
                     
                     DispatchQueue.main.async {
                         self.tblView.reloadData()
@@ -43,13 +45,17 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTVC") as! CustomTVC
-        cell.countryLbl.text = "\(countryNameDict.allKeys[indexPath.row])"
+        
+        var CountSorted = country.sorted()
+        cell.countryLbl.text = "\(CountSorted[indexPath.row])"
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "PlayerVC") as! PlayerVC
-        vc.countryName = "\(countryNameDict.allKeys[indexPath.row])"
+        var CountSorted = country.sorted()
+        vc.countryName = "\(CountSorted[indexPath.row])"
+        
         navigationController?.pushViewController(vc, animated: true)
     }
     
