@@ -9,6 +9,8 @@ import UIKit
 
 class PlayerVC: UIViewController{
     var countryNameDict = NSDictionary()
+    var countryName = ""
+    var playerArr = [String]()
     
     @IBOutlet weak var playerTV: UITableView!
     override func viewDidLoad() {
@@ -53,7 +55,7 @@ extension PlayerVC: UITableViewDataSource, UITableViewDelegate{
         cell.backgroundColor = #colorLiteral(red: 0.4739587903, green: 0.5093277097, blue: 0.6873951554, alpha: 1)
         cell.textLabel?.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         
-        let arr = countryNameDict.value(forKey: "India") as! [NSDictionary]
+        let arr = countryNameDict.value(forKey: "\(countryName)") as! [NSDictionary]
         let demo = arr[indexPath.row]
         cell.textLabel?.text = demo.value(forKey: "name") as? String ?? ""
         return cell

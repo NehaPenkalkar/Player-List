@@ -52,6 +52,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "PlayerVC") as! PlayerVC
+        vc.countryName = "\(countryNameDict.allKeys[indexPath.row])"
         navigationController?.pushViewController(vc, animated: true)
     }
     
