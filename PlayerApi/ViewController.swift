@@ -2,16 +2,17 @@ import UIKit
 
 class ViewController: UIViewController {
     @IBOutlet weak var tblView: UITableView!
-    var countryNameDict = NSDictionary()
-    var country = [String]()
+    var countryNameDict = NSDictionary()    //to store the json
+    var country = [String]()                //to store the array of countries
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         apiCall()
     }
     
     func apiCall(){
-        URLSession.shared.dataTask(with: URL(string: "http://test.oye.direct/players.json")!) { (data, resp, err) in
+        URLSession.shared.dataTask(with: URL(string: "http://test.oye.direct/players.json")!) { [self] (data, resp, err) in
             print("Response \n Data:-\(data) \n Response:- \(resp) \n Error:- \(err)")
             
             if let error = err{
@@ -23,7 +24,7 @@ class ViewController: UIViewController {
                 do{
                     let jsonResp = try JSONSerialization.jsonObject(with: dataResp, options: .mutableLeaves) as! NSDictionary
                     self.countryNameDict = jsonResp
-                    self.country = self.countryNameDict.allKeys as! [String]
+                    self.country = self.countryNameDict.allKeys as! [String] //storing array of countries
                     
                     DispatchQueue.main.async {
                         self.tblView.reloadData()
@@ -37,8 +38,6 @@ class ViewController: UIViewController {
     }
 }
 
-
-
 extension ViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return countryNameDict.count
@@ -46,17 +45,15 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTVC") as! CustomTVC
-        
-        var CountSorted = country.sorted()
+        let CountSorted = country.sorted()
         cell.countryLbl.text = "\(CountSorted[indexPath.row])"
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "PlayerVC") as! PlayerVC
-        var CountSorted = country.sorted()
+        let CountSorted = country.sorted()
         vc.countryName = "\(CountSorted[indexPath.row])"
-        
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -78,7 +75,6 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate{
         return 0.1
     }
 }
-
 
 class customHeader: UITableViewCell{
     

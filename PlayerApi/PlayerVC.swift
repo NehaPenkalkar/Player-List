@@ -10,7 +10,7 @@ import UIKit
 class PlayerVC: UIViewController{
     var countryNameDict = NSDictionary()
     var countryName = ""
-    var playerArr = [String]()
+    var playerNameArr = [String]()
     
     @IBOutlet weak var playerTV: UITableView!
     override func viewDidLoad() {
@@ -33,8 +33,6 @@ class PlayerVC: UIViewController{
                     let jsonResp = try JSONSerialization.jsonObject(with: dataResp, options: .mutableLeaves) as! NSDictionary
                     self.countryNameDict = jsonResp
                     
-                    
-                    
                     DispatchQueue.main.async {
                         self.playerTV.reloadData()
                     }
@@ -56,12 +54,12 @@ extension PlayerVC: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PlayerTVC") as! PlayerTVC
         let arr = countryNameDict.value(forKey: "\(countryName)") as! [NSDictionary]
-        let demo = arr[indexPath.row]
-        cell.PlayerLbl.text = demo.value(forKey: "name") as? String ?? ""
+        let arr1 = arr[indexPath.row]
+        cell.PlayerLbl.text = arr1.value(forKey: "name") as? String ?? ""
         
-        var cap = demo.value(forKey: "captain")
+        let cap = arr1.value(forKey: "captain")
         if cap as? Int == 1 {
-            cell.PlayerLbl.text = "\(demo.value(forKey: "name") as? String ?? "") : (Captain)"
+            cell.PlayerLbl.text = "\(arr1.value(forKey: "name") as? String ?? "") (Captain)"
         }
         return cell
     }
@@ -76,6 +74,12 @@ class PlayerTVC: UITableViewCell{
     
     @IBOutlet weak var PlayerLbl: UILabel!
     
-    @IBAction func SortBtn(_ sender: UIButton) {
+    @IBAction func sortLastBtn(_ sender: UIButton) {
+        
     }
+    
+    @IBAction func sortNameBtn(_ sender: Any) {
+        
+    }
+    
 }

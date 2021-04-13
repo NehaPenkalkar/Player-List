@@ -101,7 +101,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="DQg-Xn-5h8">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="74" width="414" height="788"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PlayerTVC" rowHeight="107" id="qlJ-Hw-LzE" customClass="PlayerTVC" customModule="PlayerApi" customModuleProvider="target">
@@ -137,10 +137,24 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9dV-Pv-v12">
-                                <rect key="frame" x="364" y="44" width="30" height="30"/>
-                                <state key="normal" title="Sort"/>
+                                <rect key="frame" x="260" y="44" width="134" height="30"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                                <state key="normal" title="Sort By Last Name">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="SortBtn:" destination="7bz-ZS-U7Q" eventType="touchUpInside" id="6xH-Yz-aCp"/>
+                                    <action selector="sortLastBtn:" destination="7bz-ZS-U7Q" eventType="touchUpInside" id="ZmX-dc-FVj"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mTy-Bh-SlI">
+                                <rect key="frame" x="20" y="44" width="99" height="30"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                                <state key="normal" title="Sort By Name">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="sortNameBtn:" destination="7bz-ZS-U7Q" eventType="touchUpInside" id="vdq-sr-fPn"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -148,9 +162,11 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="DQg-Xn-5h8" firstAttribute="leading" secondItem="v6X-M5-KOH" secondAttribute="leading" id="8df-jR-tYT"/>
-                            <constraint firstItem="DQg-Xn-5h8" firstAttribute="top" secondItem="v6X-M5-KOH" secondAttribute="top" id="EX8-Ih-ev4"/>
+                            <constraint firstItem="mTy-Bh-SlI" firstAttribute="leading" secondItem="v6X-M5-KOH" secondAttribute="leading" constant="20" id="E23-7P-Pvw"/>
                             <constraint firstItem="v6X-M5-KOH" firstAttribute="trailing" secondItem="9dV-Pv-v12" secondAttribute="trailing" constant="20" id="IsT-fh-KZa"/>
                             <constraint firstItem="9dV-Pv-v12" firstAttribute="top" secondItem="v6X-M5-KOH" secondAttribute="top" id="NqF-E3-mBc"/>
+                            <constraint firstItem="mTy-Bh-SlI" firstAttribute="top" secondItem="9dV-Pv-v12" secondAttribute="top" id="XXP-8U-hDD"/>
+                            <constraint firstItem="DQg-Xn-5h8" firstAttribute="top" secondItem="mTy-Bh-SlI" secondAttribute="bottom" id="ZKc-57-6ey"/>
                             <constraint firstItem="DQg-Xn-5h8" firstAttribute="trailing" secondItem="v6X-M5-KOH" secondAttribute="trailing" id="c8w-J1-ApN"/>
                             <constraint firstItem="DQg-Xn-5h8" firstAttribute="bottom" secondItem="v6X-M5-KOH" secondAttribute="bottom" id="yh1-AU-cji"/>
                         </constraints>
