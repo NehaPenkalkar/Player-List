@@ -56,7 +56,6 @@ extension PlayerVC: UITableViewDataSource, UITableViewDelegate{
         let arr = countryNameDict.value(forKey: "India") as! [NSDictionary]
         let demo = arr[indexPath.row]
         cell.textLabel?.text = demo.value(forKey: "name") as? String ?? ""
-        print("Source Tree testing")
         return cell
     }
     
