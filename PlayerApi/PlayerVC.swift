@@ -33,6 +33,8 @@ class PlayerVC: UIViewController{
                     let jsonResp = try JSONSerialization.jsonObject(with: dataResp, options: .mutableLeaves) as! NSDictionary
                     self.countryNameDict = jsonResp
                     
+                    
+                    
                     DispatchQueue.main.async {
                         self.playerTV.reloadData()
                     }
@@ -47,22 +49,31 @@ class PlayerVC: UIViewController{
 
 extension PlayerVC: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 15
+        let arr = countryNameDict.value(forKey: "\(countryName)") as! [NSDictionary]
+        return arr.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
-        cell.backgroundColor = #colorLiteral(red: 0.4739587903, green: 0.5093277097, blue: 0.6873951554, alpha: 1)
-        cell.textLabel?.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PlayerTVC") as! PlayerTVC
         let arr = countryNameDict.value(forKey: "\(countryName)") as! [NSDictionary]
         let demo = arr[indexPath.row]
-        cell.textLabel?.text = demo.value(forKey: "name") as? String ?? ""
+        cell.PlayerLbl.text = demo.value(forKey: "name") as? String ?? ""
+        
+        var cap = demo.value(forKey: "captain")
+        
+        if cap as? Int == 1 {
+            cell.PlayerLbl.text = "\(demo.value(forKey: "name") as? String ?? "") : (Captain)"
+        }
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0.1
     }
+}
+
+
+class PlayerTVC: UITableViewCell{
     
+    @IBOutlet weak var PlayerLbl: UILabel!
 }

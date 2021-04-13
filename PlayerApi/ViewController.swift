@@ -6,7 +6,6 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         apiCall()
     }
     
@@ -23,8 +22,6 @@ class ViewController: UIViewController {
                 do{
                     let jsonResp = try JSONSerialization.jsonObject(with: dataResp, options: .mutableLeaves) as! NSDictionary
                     self.countryNameDict = jsonResp
-                    
-                    
                     
                     DispatchQueue.main.async {
                         self.tblView.reloadData()
