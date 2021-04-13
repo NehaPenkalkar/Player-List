@@ -15,9 +15,6 @@ class PlayerVC: UIViewController{
     @IBOutlet weak var playerTV: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        // Do any additional setup after loading the view.
         apiCall()
     }
     
@@ -48,16 +45,16 @@ class PlayerVC: UIViewController{
             }
         }.resume()
     }
-
+    
     
     @IBAction func sortNameBtn(_ sender: Any) {
-         
+        
         let sorted = playerNameArr.sort { left, right -> Bool in
             guard let rightKey = right["name"] as? String else { return true }
             guard let leftKey = left["name"] as? String else { return false }
             return leftKey < rightKey
         }
-            
+        
         
         DispatchQueue.main.async {
             self.playerTV.reloadData()
@@ -90,11 +87,8 @@ extension PlayerVC: UITableViewDataSource, UITableViewDelegate{
     }
 }
 
-
 class PlayerTVC: UITableViewCell{
     
     @IBOutlet weak var PlayerLbl: UILabel!
-    
-
     
 }
