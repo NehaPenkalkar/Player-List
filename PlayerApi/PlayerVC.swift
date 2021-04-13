@@ -30,8 +30,6 @@ class PlayerVC: UIViewController{
                 do{
                     let jsonResp = try JSONSerialization.jsonObject(with: dataResp, options: .mutableLeaves) as! NSDictionary
                     self.countryNameDict = jsonResp
-                   // print(self.countryNameDict)
-                    
                     
                     DispatchQueue.main.async {
                         self.playerTV.reloadData()
@@ -54,12 +52,10 @@ extension PlayerVC: UITableViewDataSource, UITableViewDelegate{
         let cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
         cell.backgroundColor = #colorLiteral(red: 0.4739587903, green: 0.5093277097, blue: 0.6873951554, alpha: 1)
         cell.textLabel?.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        let arr1 = countryNameDict.allKeys as? [NSDictionary]
+        
         let arr = countryNameDict.value(forKey: "India") as! [NSDictionary]
         let demo = arr[indexPath.row]
         cell.textLabel?.text = demo.value(forKey: "name") as? String ?? ""
-        print("arr1")
-        print("demo for github")
         return cell
     }
     

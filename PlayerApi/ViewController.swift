@@ -47,16 +47,11 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTVC") as! CustomTVC
         cell.countryLbl.text = "\(countryNameDict.allKeys[indexPath.row])"
-        let dict = countryNameDict[indexPath.row]
-        //print(dict)
-        
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "PlayerVC") as! PlayerVC
-        let PlayerArr = countryNameDict.allKeys[indexPath.row]
-        print(PlayerArr)
         navigationController?.pushViewController(vc, animated: true)
     }
     
