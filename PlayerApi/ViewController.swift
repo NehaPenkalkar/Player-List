@@ -7,7 +7,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         apiCall()
     }
     
@@ -76,7 +76,9 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate{
     }
 }
 
+
 class customHeader: UITableViewCell{
     
     @IBOutlet weak var headLbl: UILabel!
+    
 }

@@ -19,7 +19,8 @@ class PlayerVC: UIViewController{
     }
     
     func apiCall(){
-        URLSession.shared.dataTask(with: URL(string: "http://test.oye.direct/players.json")!) { (data, resp, err) in
+        guard let url = URL(string: "http://test.oye.direct/players.json") else { return }
+        URLSession.shared.dataTask(with: url) { (data, resp, err) in
             
             if let error = err{
                 print("Error is \(error.localizedDescription)")
@@ -52,6 +53,17 @@ class PlayerVC: UIViewController{
             return leftKey < rightKey
         }
         
+        DispatchQueue.main.async {
+            self.playerTV.reloadData()
+        }
+    }
+    
+    @IBAction func sortDescending(_ sender: Any) {
+        playerNameArr.sort { (left, right) -> Bool in
+            guard let secondName = right["name"] as? String else { return true}
+            guard let firstName = left["name"] as? String else { return true }
+            return firstName > secondName
+        }
         DispatchQueue.main.async {
             self.playerTV.reloadData()
         }
