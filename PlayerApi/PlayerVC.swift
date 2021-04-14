@@ -18,7 +18,6 @@ class PlayerVC: UIViewController{
         apiCall()
     }
     
-    
     func apiCall(){
         URLSession.shared.dataTask(with: URL(string: "http://test.oye.direct/players.json")!) { (data, resp, err) in
             
@@ -47,7 +46,7 @@ class PlayerVC: UIViewController{
     }
     
     @IBAction func sortNameBtn(_ sender: Any) {
-        let sorted = playerNameArr.sort { left, right -> Bool in
+        playerNameArr.sort { left, right -> Bool in
             guard let rightKey = right["name"] as? String else { return true }
             guard let leftKey = left["name"] as? String else { return false }
             return leftKey < rightKey
