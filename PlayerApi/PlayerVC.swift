@@ -46,15 +46,12 @@ class PlayerVC: UIViewController{
         }.resume()
     }
     
-    
     @IBAction func sortNameBtn(_ sender: Any) {
-        
         let sorted = playerNameArr.sort { left, right -> Bool in
             guard let rightKey = right["name"] as? String else { return true }
             guard let leftKey = left["name"] as? String else { return false }
             return leftKey < rightKey
         }
-        
         
         DispatchQueue.main.async {
             self.playerTV.reloadData()
@@ -69,7 +66,6 @@ extension PlayerVC: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "PlayerTVC") as! PlayerTVC
         //let arr = countryNameDict.value(forKey: "\(countryName)") as! [NSDictionary]
         let arr1 = playerNameArr[indexPath.row]
